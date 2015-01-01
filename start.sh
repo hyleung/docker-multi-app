@@ -7,6 +7,6 @@ docker run -d -h redis_replica2 --name redis_replica2 --link redis_primary:redis
 docker run -d --name nodeapp -p 3000:3000 --link redis_primary:redis_primary $1/nodejs
 
 #Start ElasticSearch
-docker run -d -h elasticsearch --name elasticsearch -p 9200:9200 -p 9300:9300 dockerfile/elasticsearch
+docker run -d -h elasticsearch --name elasticsearch -p 9200:9200 -p 9300:9300 $1/elasticsearch
 #Start Logstash
 docker run -d --name logstash --volumes-from nodeapp --volumes-from redis_primary --link elasticsearch:elasticsearch $1/logstash
