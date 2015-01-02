@@ -10,3 +10,6 @@ docker run -d --name nodeapp -p 3000:3000 --link redis_primary:redis_primary $1/
 docker run -d -h elasticsearch --name elasticsearch -p 9200:9200 -p 9300:9300 $1/elasticsearch
 #Start Logstash
 docker run -d --name logstash --volumes-from nodeapp --volumes-from redis_primary --link elasticsearch:elasticsearch $1/logstash
+
+#Start Kibana
+docker run -d --name kibana -p 8888:8888 $1/kibana
